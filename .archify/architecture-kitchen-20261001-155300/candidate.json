@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Kitchen Application Architecture",
+    "output": "architecture.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/example/kitchen",
+      "revision": "0000000000000000000000000000000000000000"
+    }
+  },
+  "layout": {
+    "mode": "grid",
+    "origin": [60, 60],
+    "cols": 4,
+    "gapX": 100,
+    "gapY": 80,
+    "cellW": 180,
+    "cellH": 90
+  },
+  "components": [
+    {
+      "id": "browser",
+      "type": "external",
+      "label": "User Browser",
+      "icon": "person",
+      "row": 0,
+      "col": 0,
+      "size": [180, 90]
+    },
+    {
+      "id": "frontend",
+      "type": "frontend",
+      "label": "SvelteKit UI",
+      "sublabel": "Svelte 5 Runes",
+      "icon": "frontend",
+      "row": 0,
+      "col": 1,
+      "size": [180, 90],
+      "sources": [
+        { "path": "src/routes/shopping/+page.svelte", "line": 1, "label": "Shopping Page" }
+      ]
+    },
+    {
+      "id": "local_storage",
+      "type": "database",
+      "label": "Local Storage",
+      "sublabel": "Offline DB Cache",
+      "icon": "database",
+      "row": 1,
+      "col": 1,
+      "size": [180, 90],
+      "sources": [
+        { "path": "src/lib/store.svelte.ts", "line": 208, "label": "Local Storage key" }
+      ]
+    },
+    {
+      "id": "backend",
+      "type": "backend",
+      "label": "SvelteKit SSR",
+      "sublabel": "Vercel Hosted",
+      "icon": "backend",
+      "row": 0,
+      "col": 2,
+      "size": [180, 90]
+    },
+    {
+      "id": "supabase",
+      "type": "cloud",
+      "label": "Supabase",
+      "sublabel": "Postgres & Auth",
+      "icon": "cloud",
+      "row": 0,
+      "col": 3,
+      "size": [180, 90]
+    }
+  ],
+  "connections": [
+    {
+      "from": "browser",
+      "to": "frontend",
+      "label": "Interacts",
+      "fromSide": "right",
+      "toSide": "left",
+      "route": "straight"
+    },
+    {
+      "from": "frontend",
+      "to": "local_storage",
+      "label": "Persists state",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "route": "straight"
+    },
+    {
+      "from": "frontend",
+      "to": "backend",
+      "label": "Fetches data (SSR/API)",
+      "fromSide": "right",
+      "toSide": "left",
+      "route": "straight"
+    },
+    {
+      "from": "backend",
+      "to": "supabase",
+      "label": "Queries & Auth",
+      "fromSide": "right",
+      "toSide": "left",
+      "route": "straight"
+    }
+  ]
+}

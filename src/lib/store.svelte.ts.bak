@@ -1,0 +1,117 @@
+export type ItemStatus = 'in_fridge' | 'to_buy' | 'purchased' | 'finished';
+export type Category =
+	'Vegetables' | 'Fruits' | 'Proteins' | 'Spices' | 'Supermarket' | 'Grains' | 'Pantry';
+
+export interface MasterInventoryItem {
+	id: string;
+	name: string;
+	icon: string; // Separated emoji/icon
+	category: Category;
+	status: ItemStatus;
+	price: number;
+	brand?: string;
+	brandCountry?: string; // e.g. "🇲🇦", "🌍"
+	ecoAlternative?: string;
+	notes?: string;
+	quantity?: string; // For fridge display
+	expiresIn?: string; // e.g. "3 days"
+}
+
+// Helper to generate default items
+function createDefaultItem(
+	name: string,
+	icon: string,
+	category: Category,
+	status: ItemStatus = 'to_buy',
+	price: number = 0
+): MasterInventoryItem {
+	return { id: Math.random().toString(36).substr(2, 9), name, icon, category, status, price };
+}
+
+// Global Application State (Simulating Supabase/PowerSync Database for MVP)
+export const db = $state({
+	inventory: [
+		// --- Vegetables ---
+		createDefaultItem('طماطم', '🍅', 'Vegetables', 'in_fridge', 2.5),
+		createDefaultItem('بطاطس', '🥔', 'Vegetables'),
+		createDefaultItem('خس', '🥬', 'Vegetables'),
+		createDefaultItem('جزر', '🥕', 'Vegetables'),
+		createDefaultItem('بصل', '🧅', 'Vegetables'),
+		createDefaultItem('ثوم', '🧄', 'Vegetables'),
+		createDefaultItem('حامض', '🍋', 'Vegetables'),
+		createDefaultItem('فلفل', '🫑', 'Vegetables'),
+		createDefaultItem('خيار', '🥒', 'Vegetables'),
+		createDefaultItem('باذنجان', '🍆', 'Vegetables'),
+		createDefaultItem('قرع', '🎃', 'Vegetables'),
+
+		// --- Fruits ---
+		createDefaultItem('Apples', '🍎', 'Fruits'),
+		createDefaultItem('Bananas', '🍌', 'Fruits'),
+		createDefaultItem('Avocados', '🥑', 'Fruits', 'in_fridge', 3.0),
+
+		// --- Proteins ---
+		createDefaultItem('دجاج', '🍗', 'Proteins', 'in_fridge', 8.5),
+		createDefaultItem('Eggs', '🥚', 'Proteins'),
+		createDefaultItem('لحم مفروم', '🥩', 'Proteins'),
+		createDefaultItem('كبدة', '🥩', 'Proteins'),
+
+		// --- Spices ---
+		createDefaultItem('ملح', '🧂', 'Spices'),
+		createDefaultItem('ابزار', '🧂', 'Spices'),
+		createDefaultItem('كامون', '🧂', 'Spices', 'in_fridge', 1.2),
+		createDefaultItem('خرقوم', '🧂', 'Spices'),
+		createDefaultItem('تحميرة', '🧂', 'Spices'),
+		createDefaultItem('سكينجبير', '🫚', 'Spices'),
+
+		// --- Supermarket ---
+		createDefaultItem('مكسرات', '🥜', 'Supermarket'),
+		createDefaultItem('لوز', '🌰', 'Supermarket'),
+		createDefaultItem('خيار مخلل', '🥒', 'Supermarket'),
+		createDefaultItem('زبدة', '🧈', 'Supermarket'),
+		createDefaultItem('خل', '🧴', 'Supermarket'),
+		createDefaultItem('عدس', '🫘', 'Supermarket'),
+		createDefaultItem('صلصة طماطم', '🥫', 'Supermarket'),
+		createDefaultItem('Cheese', '🧀', 'Supermarket'),
+		createDefaultItem('ذرة', '🌽', 'Supermarket'),
+		createDefaultItem('فطر', '🍄', 'Supermarket'),
+		createDefaultItem('قهوة', '☕', 'Supermarket'),
+		{
+			...createDefaultItem('زيت', '🫙', 'Supermarket', 'in_fridge', 12.0),
+			brand: 'Oued Souss',
+			brandCountry: '🇲🇦'
+		},
+		createDefaultItem('طحين', '🌾', 'Supermarket'),
+		createDefaultItem('Pasta', '🍝', 'Supermarket'),
+		createDefaultItem('Rice', '🍚', 'Supermarket'),
+		createDefaultItem('Chocolate', '🍫', 'Supermarket'),
+		{ ...createDefaultItem('Milk', '🥛', 'Supermarket'), brand: 'Juhayna', brandCountry: '🌍' }
+	] as MasterInventoryItem[]
+});
+
+export const inventoryActions = {
+	updateStatus(id: string, newStatus: ItemStatus) {
+		const item = db.inventory.find((i) => i.id === id);
+		if (!item) return;
+
+		// The Magic State Transitions
+		if (newStatus === 'finished') {
+			item.status = 'to_buy';
+			item.quantity = '';
+		} else if (newStatus === 'purchased') {
+			item.status = 'in_fridge';
+			// Mocking newly purchased fresh quantity
+			item.quantity = '1 unit';
+			item.expiresIn = '7 days';
+		} else {
+			item.status = newStatus;
+		}
+	},
+
+	addItem(item: Omit<MasterInventoryItem, 'id' | 'status'>) {
+		db.inventory.push({
+			...item,
+			id: Math.random().toString(36).substr(2, 9),
+			status: 'to_buy'
+		});
+	}
+};

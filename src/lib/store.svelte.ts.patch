@@ -1,0 +1,50 @@
+--- src/lib/store.svelte.ts
++++ src/lib/store.svelte.ts
+@@ -1,3 +1,4 @@
++import { browser } from '$app/environment';
+ export type ItemStatus = 'in_fridge' | 'to_buy' | 'purchased' | 'finished';
+ export type Category =
+ 	'Vegetables' | 'Fruits' | 'Proteins' | 'Spices' | 'Supermarket' | 'Grains' | 'Pantry';
+@@ -162,7 +163,8 @@
+ }
+ 
+ // Global Application State (Simulating Supabase/PowerSync Database for MVP)
+-export const db = $state({
++const STORAGE_KEY = 'kitchen-db-v1';
++const defaultDb = {
+ 	inventory: [
+ 		// --- Vegetables ---
+ 		createDefaultItem('طماطم', '🍅', 'Vegetables', 'in_fridge', 2.5, 'Tomato'),
+@@ -319,7 +321,29 @@
+ 			}
+ 		}
+ 	] as Recipe[]
+-});
++};
++
++// Initialize from local storage if available
++let initialDb = defaultDb;
++if (browser) {
++	const stored = localStorage.getItem(STORAGE_KEY);
++	if (stored) {
++		try {
++			initialDb = JSON.parse(stored);
++		} catch (e) {
++			console.error("Failed to parse stored DB", e);
++		}
++	}
++}
++
++export const db = $state(initialDb);
++
++// Subscribe to changes and save to local storage
++if (browser) {
++	$effect.root(() => {
++		$effect(() => {
++			localStorage.setItem(STORAGE_KEY, JSON.stringify(db));
++		});
++	});
++}
+ 
+ export const inventoryActions = {
+ 	updateStatus(id: string, newStatus: ItemStatus) {
