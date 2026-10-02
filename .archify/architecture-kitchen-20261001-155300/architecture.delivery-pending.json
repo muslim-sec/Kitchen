@@ -1,8 +1,0 @@
-{
-  "schemaVersion": 1,
-  "command": "deliver",
-  "status": "pending",
-  "receiptId": "d522f8e3-af4d-4511-89be-158b96f01568",
-  "input": "/Users/mac/kitchen/.archify/architecture-kitchen-20261001-155300/candidate.json",
-  "output": "/Users/mac/kitchen/.archify/architecture-kitchen-20261001-155300/architecture.html"
-}

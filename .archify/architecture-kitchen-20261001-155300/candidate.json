@@ -7,14 +7,14 @@
     "quality_profile": "showcase",
     "repository": {
       "url": "https://github.com/example/kitchen",
-      "revision": "0000000000000000000000000000000000000000"
+      "revision": "882cda1dfc474f4bd22c5b6c69465780fde00295"
     }
   },
   "layout": {
     "mode": "grid",
     "origin": [60, 60],
     "cols": 4,
-    "gapX": 100,
+    "gapX": 160,
     "gapY": 80,
     "cellW": 180,
     "cellH": 90

@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "68fa5b36-5aea-45f0-b0bc-bb28009e6312",
+  "status": "current",
+  "command": "deliver",
+  "type": "architecture",
+  "input": "/Users/mac/kitchen/.archify/architecture-kitchen-20261001-155300/candidate.json",
+  "output": "/Users/mac/kitchen/.archify/architecture-kitchen-20261001-155300/architecture.html",
+  "specification": {
+    "sha256": "127f656db80074c0cc7cccc620df1a9e3e1d5da84e2dc8900c41e58993bf5956",
+    "bytes": 2475
+  },
+  "artifact": {
+    "sha256": "57111c06017ef4ce4a844cc7b3242559ee07d608e918753b9a21a5695ca8689e",
+    "bytes": 749462
+  }
+}

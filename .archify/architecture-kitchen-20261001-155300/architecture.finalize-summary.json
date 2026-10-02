@@ -1,53 +1,36 @@
 {
   "schemaVersion": 1,
-  "ok": false,
+  "ok": true,
   "command": "finalize",
-  "status": "fail",
+  "status": "pass",
   "type": "architecture",
   "quality": "showcase",
   "specification": {
     "path": "/Users/mac/kitchen/.archify/architecture-kitchen-20261001-155300/candidate.json",
-    "sha256": "8f778b8648f794d1ab9a747d52084281f3c8580c3dd1c919c15ccbd535fde397",
+    "sha256": "127f656db80074c0cc7cccc620df1a9e3e1d5da84e2dc8900c41e58993bf5956",
     "bytes": 2475
   },
   "artifact": {
-    "path": "/Users/mac/kitchen/.archify/architecture-kitchen-20261001-155300/architecture.html"
+    "path": "/Users/mac/kitchen/.archify/architecture-kitchen-20261001-155300/architecture.html",
+    "sha256": "57111c06017ef4ce4a844cc7b3242559ee07d608e918753b9a21a5695ca8689e",
+    "bytes": 749462
   },
   "gates": {
-    "validate": "fail",
-    "deliver": "not-run",
-    "check": "not-run",
-    "browser-check": "not-run"
+    "validate": "pass",
+    "deliver": "pass",
+    "check": "pass",
+    "browser-check": "pass"
   },
-  "failedStage": "validate",
-  "diagnostics": [
-    {
-      "code": "repository-evidence/git-command",
-      "severity": "error",
-      "message": "Evidence root \"/Users/mac/kitchen\" is not a Git repository.",
-      "subject": {
-        "surface": "repository-evidence"
-      },
-      "evidence": {
-        "gitArgs": [
-          "rev-parse",
-          "--show-toplevel"
-        ],
-        "exitCode": 128
-      },
-      "supportedFixes": [
-        "use the intended local Git repository and verify its origin and revision"
-      ]
-    }
-  ],
+  "diagnostics": [],
   "diagnosticSummary": {
-    "total": 1,
-    "shown": 1,
+    "total": 0,
+    "shown": 0,
     "truncated": false
   },
   "evidence": {
     "receipt": "/Users/mac/kitchen/.archify/architecture-kitchen-20261001-155300/architecture.finalize.json",
-    "summaryReceipt": "/Users/mac/kitchen/.archify/architecture-kitchen-20261001-155300/architecture.finalize-summary.json"
+    "summaryReceipt": "/Users/mac/kitchen/.archify/architecture-kitchen-20261001-155300/architecture.finalize-summary.json",
+    "browserCheckReceipt": "/Users/mac/kitchen/.archify/architecture-kitchen-20261001-155300/architecture.browser-check.json"
   },
   "update": {
     "status": "current",
@@ -60,11 +43,5 @@
     "noticeText": null
   },
   "visualReview": "not-requested",
-  "durationMs": 834,
-  "nextAction": {
-    "action": "edit-in-place",
-    "candidate": "/Users/mac/kitchen/.archify/architecture-kitchen-20261001-155300/candidate.json",
-    "constraint": "Preserve all semantics and user-fixed geometry. Use references/architecture-layout-repair.md to choose a local repair or connected-scene reflow; edit the existing candidate.",
-    "then": "finalize-once"
-  }
+  "durationMs": 2384
 }

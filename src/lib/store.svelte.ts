@@ -295,6 +295,10 @@ const defaultDb = {
 		createDefaultItem('الشوكولاتة الداكنة', '🍫', 'Snacks', 'in_fridge', 0, 'Dark Chocolate', 2, 'bars'),
 		createDefaultItem('زبادي / دانون', '🥣', 'Dairy', 'in_fridge', 0, 'Yogurt', 4, 'cups'),
 		createDefaultItem('مشروب طاقة للتركيز', '⚡', 'Beverages', 'in_fridge', 0, 'Energy Drink', 2, 'cans'),
+		createDefaultItem('لويزة', '🌿', 'Beverages', 'in_fridge', 0, 'Lemon Verbena', 1, 'bunch'),
+		createDefaultItem('زعتر', '🍃', 'Beverages', 'in_fridge', 0, 'Thyme', 1, 'bunch'),
+		createDefaultItem('فليو', '🌱', 'Beverages', 'in_fridge', 0, 'Pennyroyal', 1, 'bunch'),
+		createDefaultItem('ماتشا', '🍵', 'Beverages', 'in_fridge', 0, 'Matcha', 1, 'box'),
 		
 		createDefaultItem('بروكلي', '🥦', 'Vegetables', 'in_fridge', 0, 'Broccoli', 1, 'kg'),
 		createDefaultItem('سبانخ', '🥬', 'Vegetables', 'in_fridge', 0, 'Spinach', 2, 'bunches'),
@@ -660,7 +664,8 @@ if (browser) {
 								'مكسرات': 150 /*per kg*/, 'لوز': 120, 'فواكه مجففة / تمر': 40, 'زبدة الفول السوداني': 45, 'العسل': 80, 'المربى': 15,
 								'Chocolate': 15, 'الشوكولاتة الداكنة': 20, 'برينجلز': 30, 'ذرة الفشار': 15, 'كعك الأرز': 25,
 								'سيريلاك / حبوب الأطفال': 35, 'حبوب الإفطار': 35, 'الشوفان': 25,
-								'قهوة': 100 /*per kg*/, 'مياه معدنية': 2 /*per L*/, 'عصير برتقال معلب': 12, 'Celsius (طاقة صحي)': 25, 'مشروب ماتشا (طاقة هادئ)': 35
+								'قهوة': 100 /*per kg*/, 'مياه معدنية': 2 /*per L*/, 'عصير برتقال معلب': 12, 'Celsius (طاقة صحي)': 25, 'مشروب ماتشا (طاقة هادئ)': 35,
+								'لويزة': 3, 'زعتر': 3, 'فليو': 3, 'ماتشا': 90
 							};
 
 							// Normalize units internally for calculation (assuming default DB units)
@@ -684,6 +689,21 @@ if (browser) {
 						const existingItemNames = new Set(parsed.inventory.map((i: any) => i.name));
 						const missingInventory = defaultDb.inventory.filter((i: any) => !existingItemNames.has(i.name));
 						initialDb.inventory = [...parsed.inventory, ...missingInventory];
+						if (!(parsed as any).hasAddedDrinkPrices_v3) {
+							const newPrices: Record<string, number> = { 'لويزة': 3, 'زعتر': 3, 'فليو': 3, 'ماتشا': 90 };
+							initialDb.inventory.forEach((item: any) => {
+								if (newPrices[item.name]) {
+									let basePrice = newPrices[item.name];
+									if (item.quantityUnit === 'g' || item.quantityUnit === 'ml') {
+										basePrice = basePrice / 1000;
+									}
+									item.unitPrice = parseFloat(basePrice.toFixed(2));
+									item.price = parseFloat((item.quantityAmount * basePrice).toFixed(2));
+								}
+							});
+							(parsed as any).hasAddedDrinkPrices_v3 = true;
+						}
+
 					}
 				
 				if (parsed.recipes) {
