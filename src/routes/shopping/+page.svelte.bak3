@@ -146,12 +146,9 @@
 		const result = {} as Record<Category, typeof db.inventory>;
 		categories.forEach((c) => (result[c] = []));
 
-		const query = searchQuery.toLowerCase().trim();
 		db.inventory.forEach((item) => {
 			if (item.isHidden && !showHidden) return;
-			if (cycleFilter !== 'all' && item.cycle !== cycleFilter) return;
-			if (query && !item.name.toLowerCase().includes(query) && !(item.englishName && item.englishName.toLowerCase().includes(query))) return;
-			
+				if (cycleFilter !== 'all' && item.cycle !== cycleFilter) return;
 			if (viewMode === 'all' || item.status === 'to_buy') {
 				result[item.category].push(item);
 			}
@@ -325,21 +322,9 @@
 		</div>
 	</div>
 
-	<!-- Search Bar -->
-		<div class="relative mb-6">
-			<Search size={20} class="absolute top-1/2 left-4 -translate-y-1/2 text-text-muted" />
-			<input
-				type="text"
-				bind:value={searchQuery}
-				placeholder="Search shopping list..."
-				class="w-full rounded-2xl border border-border-warm bg-surface py-3.5 pr-4 pl-12 text-text-espresso placeholder-text-subtle shadow-sm focus:border-transparent focus:ring-2 focus:ring-hearth-400 focus:outline-none"
-			/>
-		</div>
-
-		<!-- Render Grouped Tables -->
+	<!-- Render Grouped Tables -->
 	<div class="space-y-6 pb-24">
 		{#each categories as category}
-			{#if groupedItems[category].length > 0 || !searchQuery.trim()}
 			<div class="animate-in fade-in slide-in-from-bottom-2 duration-500">
 				<!-- Collapsible Header -->
 				<button
@@ -550,8 +535,8 @@
 					</div>
 				{/if}
 			</div>
-		{/if}
-			{/each}
+			{/if}
+		{/each}
 
 		<!-- Empty State when fully bought -->
 		{#if Object.values(groupedItems).flat().length === 0}
