@@ -12,7 +12,18 @@
 		{ name: 'ChefSteps', url: 'https://www.chefsteps.com/', icon: '👨‍🍳' },
 		{ name: 'Food Wishes', url: 'https://www.youtube.com/user/foodwishes', icon: '🌟' },
 		{ name: 'VideoCulinary', url: 'https://videoculinary.com/', icon: '🎬' },
-		{ name: 'The Novice Chef', url: 'https://thenovicechefblog.com/', icon: '👩‍🍳' }
+		{ name: 'The Novice Chef', url: 'https://thenovicechefblog.com/', icon: '👩‍🍳' },
+		{ name: 'Tasty', url: 'https://tasty.co/', icon: '🍕' },
+		{ name: 'Serious Eats', url: 'https://www.seriouseats.com/', icon: '🔬' },
+		{ name: 'RecipeTin Eats', url: 'https://www.recipetineats.com/', icon: '🍲' },
+		{ name: 'The Woks of Life', url: 'https://thewoksoflife.com/', icon: '🥡' },
+		{ name: 'Just One Cookbook', url: 'https://www.justonecookbook.com/', icon: '🍱' },
+		{ name: 'Hot Thai Kitchen', url: 'https://hot-thai-kitchen.com/', icon: '🌶️' },
+		{ name: "Omnivore's Cookbook", url: 'https://omnivorescookbook.com/', icon: '🥢' },
+		{ name: 'Chef in Disguise', url: 'https://chefindisguise.com/', icon: '🥙' },
+		{ name: 'Hungry Paprikas', url: 'https://www.hungrypaprikas.com/', icon: '🧆' },
+		{ name: "Fufu's Kitchen", url: 'https://www.fufuskitchen.com/', icon: '🍋' },
+		{ name: 'The Mediterranean Dish', url: 'https://www.themediterraneandish.com/', icon: '🍅' }
 	];
 
 	// Mock data for MVP
