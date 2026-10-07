@@ -273,6 +273,7 @@ const defaultDb = {
 
 			// --- Canned & Basics ---
 		createDefaultItem('التونة المعلبة', '🐟', 'Canned Goods', 'in_fridge', 0, 'Canned Tuna', 3, 'cans'),
+		createDefaultItem('نقانق معلبة', '🥫', 'Canned Goods', 'in_fridge', 0, 'Canned Sausages', 2, 'cans'),
 		createDefaultItem('الفاصوليا المعلبة', '🥫', 'Canned Goods', 'in_fridge', 0, 'Canned Beans', 2, 'cans'),
 		createDefaultItem('الفطر المعلب', '🍄', 'Canned Goods', 'in_fridge', 0, 'Canned Mushrooms', 2, 'cans'),
 		createDefaultItem('الحمص', '🧆', 'Canned Goods', 'in_fridge', 0, 'Chickpeas', 1, 'kg'),

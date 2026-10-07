@@ -5,7 +5,14 @@
 		{ name: 'BBC Good Food', url: 'https://www.bbcgoodfood.com', icon: '🌍' },
 		{ name: 'YouTube', url: 'https://youtube.com', icon: '📺' },
 		{ name: 'Epicurious', url: 'https://www.epicurious.com', icon: '🍽️' },
-		{ name: 'NYT Cooking', url: 'https://cooking.nytimes.com', icon: '📰' }
+		{ name: 'NYT Cooking', url: 'https://cooking.nytimes.com', icon: '📰' },
+		{ name: "What's For Dinner", url: 'https://whatsfordinner.com/recipes/', icon: '🥘' },
+		{ name: "America's Test Kitchen", url: 'https://www.americastestkitchen.com/', icon: '🧪' },
+		{ name: 'Food Network', url: 'https://www.foodnetwork.com/', icon: '📺' },
+		{ name: 'ChefSteps', url: 'https://www.chefsteps.com/', icon: '👨‍🍳' },
+		{ name: 'Food Wishes', url: 'https://www.youtube.com/user/foodwishes', icon: '🌟' },
+		{ name: 'VideoCulinary', url: 'https://videoculinary.com/', icon: '🎬' },
+		{ name: 'The Novice Chef', url: 'https://thenovicechefblog.com/', icon: '👩‍🍳' }
 	];
 
 	// Mock data for MVP
