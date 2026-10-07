@@ -231,6 +231,7 @@ const defaultDb = {
 		createDefaultItem('دجاج', '🍗', 'Proteins', 'in_fridge', 8.5, 'Chicken', 1.5, 'kg'),
 		createDefaultItem('Eggs', '🥚', 'Proteins', 'in_fridge', 0, 'Eggs', 30, 'pcs'),
 		createDefaultItem('لحم مفروم', '🥩', 'Proteins', 'in_fridge', 0, 'Minced Meat', 1, 'kg'),
+		createDefaultItem('نقانق', '🌭', 'Proteins', 'in_fridge', 0, 'Sausages', 1, 'packs'),
 		createDefaultItem('كبدة', '🥩', 'Proteins', 'in_fridge', 0, 'Liver', 0.5, 'kg'),
 
 		// --- Spices ---
@@ -259,6 +260,9 @@ const defaultDb = {
 		},
 		createDefaultItem('طحين', '🌾', 'Pantry', 'in_fridge', 0, 'Flour', 5, 'kg'),
 		createDefaultItem('Pasta', '🍝', 'Pantry', 'in_fridge', 0, 'Pasta', 1, 'kg'),
+		createDefaultItem('سباغيتي', '🍝', 'Pantry', 'in_fridge', 0, 'Spaghetti', 1, 'packs'),
+		createDefaultItem('مكرونة روتيني', '🍝', 'Pantry', 'in_fridge', 0, 'Rotini Pasta', 1, 'packs'),
+		createDefaultItem('مكرونة تاغلياتيل', '🍝', 'Pantry', 'in_fridge', 0, 'Tagliatelle Pasta', 1, 'packs'),
 		createDefaultItem('Rice', '🍚', 'Pantry', 'in_fridge', 0, 'Rice', 2, 'kg'),
 		createDefaultItem('Chocolate', '🍫', 'Snacks', 'in_fridge', 0, 'Chocolate', 2, 'bars'),
 		{
