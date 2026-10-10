@@ -166,6 +166,24 @@
 								ratings (Nutri-Score/NOVA).
 							</p>
 						</section>
+
+						<!-- 7. AI Assistant -->
+						<section class="md:col-span-2">
+							<h3
+								class="mb-3 flex items-center gap-2 text-sm font-semibold tracking-wider text-gray-500 uppercase"
+							>
+								<Globe size={16} /> AI Assistant (OpenRouter)
+							</h3>
+							<input
+								type="password"
+								bind:value={db.settings.openRouterApiKey}
+								placeholder="sk-or-v1-..."
+								class="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 focus:border-amber-500 focus:ring-1 focus:ring-amber-500 focus:outline-none"
+							/>
+							<p class="mt-2 text-xs text-gray-500">
+								Enter your OpenRouter API Key to power the Chef Mascot. Your key is stored securely in your browser.
+							</p>
+						</section>
 					</div>
 				</div>
 			</div>

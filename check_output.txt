@@ -1,0 +1,229 @@
+Loading svelte-check in workspace: /Users/mac/kitchen
+Getting Svelte diagnostics...
+
+/Users/mac/kitchen/src/lib/store.svelte.ts:1144:5
+Error: Property 'openRouterApiKey' is missing in type '{ country: string; }' but required in type '{ country: string; openRouterApiKey: string; }'. 
+			if (!initialDb.settings) {
+				initialDb.settings = { country: 'US' };
+			}
+
+/Users/mac/kitchen/src/lib/components/AIChatWidget.svelte:15:6
+Warn: `chatContainer` is updated, but is not declared with `$state(...)`. Changing its value will not correctly trigger updates
+https://svelte.dev/e/non_reactive_update (svelte)
+	let isGenerating = $state(false);
+	let chatContainer: HTMLElement;
+
+/Users/mac/kitchen/src/lib/components/AIChatWidget.svelte:83:4
+Error: Argument of type '(props: MascotProps) => any' is not assignable to parameter of type 'ConstructorOfATypedSvelteComponent | Component<any, any, any> | null | undefined'.
+  Type '(props: MascotProps) => any' is not assignable to type 'Component<any, any, any>'.
+    Types of parameters 'props' and 'internals' are incompatible.
+      Type 'Brand<"ComponentInternals">' is missing the following properties from type 'MascotProps': directions, reactions
+
+Possible causes:
+- You use the instance type of a component where you should use the constructor type
+- Type definitions are missing for this Svelte Component.  (ts)
+	<div onclick={toggleChat}>
+		<Mascot
+			directions="/mascots/chef-directions.webp"
+
+/Users/mac/kitchen/src/lib/components/ConsumeModal.svelte:52:2
+Warn: Elements with the 'dialog' interactive role must have a tabindex value
+https://svelte.dev/e/a11y_interactive_supports_focus (svelte)
+	<!-- svelte-ignore a11y_click_events_have_key_events -->
+	<div
+		class="fixed inset-0 z-[100] flex items-center justify-center bg-text-espresso/20 p-4 backdrop-blur-sm"
+		transition:fade={{ duration: 200 }}
+		onclick={handleClose}
+		role="dialog"
+	>
+		<!-- Modal Content -->
+		<div
+			class="w-full max-w-sm overflow-hidden rounded-3xl border border-border-warm bg-surface shadow-hover"
+			transition:scale={{ duration: 300, start: 0.95, easing: quintOut }}
+			onclick={(e) => e.stopPropagation()}
+			role="document"
+		>
+			<!-- Header -->
+			<div class="flex items-center justify-between border-b border-border-warm bg-surface-warm/50 px-5 py-4">
+				<h3 class="flex items-center gap-2 text-lg font-bold text-text-espresso">
+					<Cookie size={20} class="text-hearth-500" />
+					Consume Item
+				</h3>
+				<button
+					class="rounded-full p-1 text-text-muted transition-colors hover:bg-border-warm hover:text-text-espresso"
+					onclick={handleClose}
+				>
+					<X size={20} />
+				</button>
+			</div>
+
+			<!-- Body -->
+			<div class="p-6">
+				<div class="mb-6 flex items-center gap-4 rounded-xl border border-border-warm bg-canvas p-4 text-center">
+					<span class="text-4xl">{item.icon}</span>
+					<div class="flex-1 text-left">
+						<h4 class="font-bold text-text-espresso">{item.name}</h4>
+						<p class="text-sm font-medium text-text-muted">
+							Current: <span class="text-hearth-600">{item.quantityAmount} {item.quantityUnit}</span>
+						</p>
+					</div>
+				</div>
+
+				<div class="mb-6 text-center">
+					<label class="mb-2 block text-sm font-bold text-text-espresso">
+						How much did you use?
+					</label>
+					<div class="mx-auto flex w-48 items-center gap-2 rounded-xl border border-hearth-200 bg-hearth-50 p-1">
+						<button
+							class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-hearth-600 transition-colors hover:bg-hearth-100 disabled:opacity-50"
+							onclick={() => (deductAmount = Math.max(0.1, deductAmount - (item?.quantityUnit === 'g' || item?.quantityUnit === 'ml' ? 10 : 1)))}
+						>
+							<Minus size={20} />
+						</button>
+						<input
+							type="number"
+							step="any"
+							min="0.1"
+							bind:value={deductAmount}
+							class="w-full bg-transparent text-center text-xl font-bold text-hearth-900 outline-none"
+						/>
+						<span class="pr-2 text-sm font-bold text-hearth-600/50">{item.quantityUnit}</span>
+					</div>
+				</div>
+
+				<div class="flex flex-col gap-3">
+					<button
+						class="w-full rounded-xl bg-hearth-500 py-3 font-bold text-white transition-transform hover:scale-[1.02] active:scale-[0.98]"
+						onclick={consumePartial}
+					>
+						Consume {deductAmount} {item.quantityUnit}
+					</button>
+					<button
+						class="w-full rounded-xl border-2 border-border-warm bg-transparent py-3 font-bold text-text-muted transition-colors hover:border-hearth-300 hover:text-hearth-600"
+						onclick={consumeAll}
+					>
+						Consume All (To Shopping List)
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+{/if}
+
+/Users/mac/kitchen/src/lib/components/ConsumeModal.svelte:92:6
+Warn: A form label must be associated with a control
+https://svelte.dev/e/a11y_label_has_associated_control (svelte)
+				<div class="mb-6 text-center">
+					<label class="mb-2 block text-sm font-bold text-text-espresso">
+						How much did you use?
+					</label>
+					<div class="mx-auto flex w-48 items-center gap-2 rounded-xl border border-hearth-200 bg-hearth-50 p-1">
+
+/Users/mac/kitchen/src/lib/components/TagInput.svelte:164:3
+Warn: `<div>` with a mousedown handler must have an ARIA role
+https://svelte.dev/e/a11y_no_static_element_interactions (svelte)
+	{#if isCreating}
+		<div
+			onmousedown={(e) => e.preventDefault()}
+			class="absolute left-0 top-[calc(100%+4px)] z-50 w-full md:w-80 overflow-hidden rounded-xl border border-border-warm bg-surface p-4 shadow-hover"
+		>
+			<h4 class="mb-3 text-sm font-bold text-text-espresso">Create New Tag</h4>
+			
+			<div class="space-y-4">
+				<div class="flex items-center gap-2">
+					<div class="relative">
+						<button 
+							type="button"
+							onclick={() => isEmojiPickerOpen = !isEmojiPickerOpen}
+							class="flex h-10 w-10 items-center justify-center rounded-lg border border-border-warm bg-surface-warm text-xl transition-colors hover:bg-hearth-100"
+						>
+							{newTagEmoji}
+						</button>
+						{#if isEmojiPickerOpen}
+							<div class="absolute left-0 top-[calc(100%+4px)] z-50 grid w-48 grid-cols-5 gap-1 rounded-xl border border-border-warm bg-white p-2 shadow-cozy">
+								{#each EMOJIS as emoji}
+									<button 
+										type="button"
+										onclick={() => { newTagEmoji = emoji; isEmojiPickerOpen = false; }}
+										class="flex h-8 w-8 items-center justify-center rounded-md text-lg hover:bg-hearth-50"
+									>
+										{emoji}
+									</button>
+								{/each}
+							</div>
+						{/if}
+					</div>
+					
+					<input 
+						type="text" 
+						bind:value={newTagName} 
+						class="flex-1 rounded-lg border border-border-warm bg-canvas px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-hearth-400"
+					/>
+				</div>
+				
+				<div>
+					<label class="mb-2 block text-xs font-semibold text-text-muted">Color</label>
+					<div class="flex flex-wrap gap-2">
+						{#each COLORS as color}
+							<button 
+								type="button"
+								onclick={() => newTagColor = color}
+								class="flex h-6 w-6 items-center justify-center rounded-full border-2 transition-transform hover:scale-110 {color} {newTagColor === color ? 'ring-2 ring-hearth-400 ring-offset-1' : 'border-transparent'}"
+							></button>
+						{/each}
+					</div>
+				</div>
+				
+				<div class="flex justify-end gap-2 pt-2">
+					<button 
+						type="button"
+						onclick={() => { isCreating = false; inputValue = ''; }}
+						class="rounded-lg px-3 py-1.5 text-sm font-semibold text-text-muted hover:bg-surface-warm"
+					>
+						Cancel
+					</button>
+					<button 
+						type="button"
+						onclick={saveNewTag}
+						class="rounded-lg bg-hearth-500 px-3 py-1.5 text-sm font-bold text-white hover:bg-hearth-600"
+					>
+						Save Tag
+					</button>
+				</div>
+			</div>
+		</div>
+	{/if}
+
+/Users/mac/kitchen/src/lib/components/TagInput.svelte:203:6
+Warn: A form label must be associated with a control
+https://svelte.dev/e/a11y_label_has_associated_control (svelte)
+				<div>
+					<label class="mb-2 block text-xs font-semibold text-text-muted">Color</label>
+					<div class="flex flex-wrap gap-2">
+
+/Users/mac/kitchen/src/lib/components/TagInput.svelte:206:8
+Warn: Buttons and links should either contain text or have an `aria-label`, `aria-labelledby` or `title` attribute
+https://svelte.dev/e/a11y_consider_explicit_label (svelte)
+						{#each COLORS as color}
+							<button 
+								type="button"
+								onclick={() => newTagColor = color}
+								class="flex h-6 w-6 items-center justify-center rounded-full border-2 transition-transform hover:scale-110 {color} {newTagColor === color ? 'ring-2 ring-hearth-400 ring-offset-1' : 'border-transparent'}"
+							></button>
+						{/each}
+
+/Users/mac/kitchen/src/routes/recipes/[id]/+page.svelte:35:46
+Warn: This reference only captures the initial value of `recipe`. Did you mean to reference it inside a derived instead?
+https://svelte.dev/e/state_referenced_locally (svelte)
+	let editSteps = $state<string[]>([]);
+	let editStorage = $state<Recipe['storage']>(recipe?.storage);
+	let editNutrition = $state<Recipe['nutrition']>(recipe?.nutrition);
+
+/Users/mac/kitchen/src/routes/recipes/[id]/+page.svelte:36:50
+Warn: This reference only captures the initial value of `recipe`. Did you mean to reference it inside a derived instead?
+https://svelte.dev/e/state_referenced_locally (svelte)
+	let editStorage = $state<Recipe['storage']>(recipe?.storage);
+	let editNutrition = $state<Recipe['nutrition']>(recipe?.nutrition);
+
+====================================
+svelte-check found 2 errors and 8 warnings in 5 files

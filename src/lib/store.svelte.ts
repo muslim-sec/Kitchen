@@ -652,7 +652,7 @@ const defaultDb = {
 		{ name: 'Juice', emoji: '🥤', color: 'bg-blue-100 text-blue-700' },
 		{ name: 'Sweet / Pancakes', emoji: '🥞', color: 'bg-yellow-100 text-yellow-700' }
 	] as Tag[],
-	settings: { country: 'US' },
+	settings: { country: 'US', openRouterApiKey: '' },
 	hideTemplates: [] as HideTemplate[],
 	weeklyPlan: [
 		{ day: 'Monday', breakfast: null, lunch: null, dinner: null },
@@ -1074,7 +1074,6 @@ if (browser) {
 						'Celsius (طاقة صحي)': 25,
 						'مشروب ماتشا (طاقة هادئ)': 35,
 						لويزة: 3,
-						زعتر: 3,
 						فليو: 3,
 						ماتشا: 90
 					};
@@ -1142,7 +1141,7 @@ if (browser) {
 			}
 
 			if (!initialDb.settings) {
-				initialDb.settings = { country: 'US' };
+				initialDb.settings = { country: 'US', openRouterApiKey: '' };
 			}
 		} catch (e) {
 			console.error('Failed to parse stored DB', e);

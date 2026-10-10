@@ -14,6 +14,7 @@
 	import { fade, crossfade } from 'svelte/transition';
 	import { cubicOut } from 'svelte/easing';
 	import FamilySettingsModal from '$lib/components/FamilySettingsModal.svelte';
+	import AIChatWidget from '$lib/components/AIChatWidget.svelte';
 
 	const [send, receive] = crossfade({
 		duration: 300,
@@ -134,4 +135,5 @@
 	</main>
 
 	<FamilySettingsModal bind:isOpen={showFamilyModal} />
+	<AIChatWidget />
 </div>
